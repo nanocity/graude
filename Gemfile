@@ -9,8 +9,15 @@ gem 'devise',          '~> 3.0.0'
 gem 'omniauth',        '~> 1.1.4'
 gem 'omniauth-github', '~> 1.1.1'
 
+gem 'acts_as_api', '~> 0.4.1'
+gem 'validates_timeliness', '~> 3.0.14'
+
+gem 'ember-rails'
+gem 'ember-source', '1.0.0.rc6.2'
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
+gem 'bootstrap-sass', '~> 2.3.2.1'
 
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
@@ -25,7 +32,7 @@ gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
-gem 'turbolinks'
+# gem 'turbolinks'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'

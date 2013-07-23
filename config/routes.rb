@@ -2,6 +2,9 @@ Graude::Application.routes.draw do
   namespace :api do
     namespace :v1 do
       devise_for :sessions
+
+      resources :players, only: [:index, :show]
+      resources :tournaments, except: [:new, :edit]
     end
   end
 

@@ -1,5 +1,8 @@
 class Session
   include Mongoid::Document
+
+  acts_as_api
+
   # Include default devise modules. Others available are:
   # :confirmable
   # :lockable
@@ -46,13 +49,22 @@ class Session
   field :current_sign_in_ip, :type => String
   field :last_sign_in_ip,    :type => String
 
-  field :email, :type => String, :default => ""
-  field :name,  :type => String, :default => ""
-  field :nick,  :type => String, :default => ""
+  field :email, :type => String, :default => ''
+  field :name,  :type => String, :default => ''
+  field :nick,  :type => String, :default => ''
 
   validates_uniqueness_of :email
-  validates_presence_of   :email
-  validates_format_of     :email, with: Devise::email_regexp
 
+  validates_presence_of :email
   validates_presence_of :name
+
+  validates_format_of :email, with: Devise::email_regexp
+
+
+  api_accessible :player do |t|
+    t.add lambda{ |session| session.id.to_s }, as: :id
+    t.add :email
+    t.add :name
+    t.add :nick
+  end
 end

@@ -1,0 +1,10 @@
+<h2>Tournaments</h2>
+<ul>
+{{#each tournament in controller}}
+  <li>
+    {{#linkTo 'tournament' tournament}}
+      {{tournament.name}}
+    {{/linkTo}}
+  </li>
+{{/each}}
+</ul>
