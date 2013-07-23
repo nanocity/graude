@@ -1,0 +1,3 @@
+Devise.setup do |config|
+  config.omniauth :github, '2e341541a5aabf1d9012', '1d4ff03c7b095ee6024dea209965a2615294a79d', :scope => 'user:email'
+end
