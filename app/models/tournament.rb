@@ -1,23 +1,57 @@
 class Tournament
   include Mongoid::Document
+  include Mongoid::Paperclip
 
   acts_as_api
 
-  field :name, type: String, default: ''
-  field :address, type: String, default: ''
-  field :date, type: DateTime
+  MINIMUM_PLAYERS = 4
 
+  # Descriptive fields
+  field :name,          type: String
+  field :description,   type: String
+  field :address,       type: String
+  field :date,          type: DateTime
+  field :coordinates,   type: Array
+  has_mongoid_attached_file :poster,
+    styles: {
+      original: ['1920x1680>', :jpg],
+      small:    ['100x100#',   :jpg],
+      medium:   ['250x250',    :jpg],
+      large:    ['500x500>',   :jpg]
+    },
+    convert_options: {
+      all: '-background white -flatten +matte'
+    }
+
+  # Configuration fields
+  field :players_limit, type: Integer
+
+  # Relations
+  belongs_to :creator, class_name: "Session", inverse_of: :created_tournaments
+  has_many :participations
+
+  # Validations
   validates_presence_of :name
-  validates_presence_of :address
   validates_presence_of :date
 
-  validates_datetime :date, on_or_after: :today
+  validates_datetime :date,
+    on_or_after: :today
 
+  validates_numericality_of :players_limit,
+    greater_than_or_equal_to: MINIMUM_PLAYERS,
+    even: true
 
+  # Templates
   api_accessible :tournament do |t|
-    t.add lambda{ |tournament| tournament.id.to_s }, as: :id
+    t.add :to_param, as: :id
     t.add :name
+    t.add :description
     t.add :address
     t.add :date
+    t.add :coordinates
+    t.add :players_limit
+
+    t.add :creator, template: :session
+    t.add :participations, template: :participation
   end
 end

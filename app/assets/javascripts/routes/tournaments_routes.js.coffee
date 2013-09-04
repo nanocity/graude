@@ -1,7 +1,7 @@
 Graude.TournamentsRoute = Ember.Route.extend
-  model: ()->
+  model: () ->
     Graude.Tournament.find({})
 
 Graude.TournamentRoute = Ember.Route.extend
-  model: ( params )->
+  model: ( params ) ->
     Graude.Tournament.find( params.tournament_id )

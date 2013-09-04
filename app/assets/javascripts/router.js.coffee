@@ -3,7 +3,7 @@
 Graude.Router.map () ->
   @resource 'players'
 
-  @resource 'tournaments', ()->
+  @resource 'tournaments', () ->
     @route 'create'
-    @resource 'tournament', { path: '/:tournament_id' }, ()->
+    @resource 'tournament', { path: '/:tournament_id' }, () ->
       @route 'edit'

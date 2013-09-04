@@ -20,6 +20,8 @@
 //= require graude
 
 // for more details see: http://emberjs.com/guides/application/
-Graude = Ember.Application.create();
+Graude = Ember.Application.create({
+  LOG_TRANSITIONS: true
+});
 
 //= require_tree .

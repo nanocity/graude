@@ -1,33 +1,35 @@
 class Api::V1::TournamentsController < Api::V1::ApplicationController
+  load_resource except: [ :create ]
+  authorize_resource
+
   def index
-    tournaments = Tournament.all
-    respond_with tournaments, api_template: :tournament
+    respond_with @tournaments, api_template: :tournament
   end
 
   def show
-    tournament = Tournament.find( params[:id] )
-    respond_with tournament, api_template: :tournament
+    respond_with @tournament, api_template: :tournament
   end
 
   def create
-    tournament = Tournament.create( tournament_params )
-    respond_with tournament, api_template: :tournament, location: api_v1_tournament_url( tournament )
+    @tournament = Tournament.new( tournament_params )
+    @tournament.creator = current_session
+    @tournament.save
+
+    respond_with @tournament, api_template: :tournament, location: api_v1_tournament_url( @tournament )
   end
 
   def update
-    tournament = Tournament.find( params[:id] )
-    tournament.update_attributes( tournament_params )
-    respond_with tournament, api_template: :tournament, location: api_v1_tournament_url( tournament )
+    @tournament.update_attributes( tournament_params )
+    respond_with @tournament, api_template: :tournament, location: api_v1_tournament_url( @tournament )
   end
 
   def destroy
-    tournament = Tournament.find( params[:id] )
-    tournament.destroy
-    respond_with tournament, api_template: :tournament, location: api_v1_tournament_url( tournament )
+    @tournament.destroy
+    respond_with @tournament, api_template: :tournament, location: api_v1_tournament_url( @tournament )
   end
 
   private
     def tournament_params
-      params.require( :tournament ).permit( :name, :address, :date )
+      params.require( :tournament ).permit( :name, :description, :address, :date, :coordinates, :players_limit )
     end
 end
