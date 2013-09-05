@@ -1,0 +1,35 @@
+<form class='form-horizontal'>
+  <div class='control-group'>
+    <label class='control-label' for='tournament_name'>Name</label>
+    <div class='controls'>
+      {{input value=name placeholder='Name' type='text' id='tournament_name'}}
+    </div>
+  </div>
+
+  <div class='control-group'>
+    <label class='control-label' for='tournament_description'>Description</label>
+    <div class='controls'>
+      {{textarea value=description placeholder='Description' id='tournament_description'}}
+    </div>
+  </div>
+
+  <div class='control-group'>
+    <label class='control-label' for='tournament_address'>Address</label>
+    <div class='controls'>
+      {{input value=address placeholder='Address' type='text' id='tournament_address'}}
+    </div>
+  </div>
+
+  <div class='control-group'>
+    <label class='control-label' for='tournament_date'>Date</label>
+    <div class='controls'>
+      {{input value=date placeholder='Date' type='text' id='tournament_date'}}
+    </div>
+  </div>
+
+  <div class='control-group'>
+    <div class='controls'>
+      <button type='submit' class='btn' {{action editTournament content}}>Edit</button>
+    </div>
+  </div>
+</form>

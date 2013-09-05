@@ -4,5 +4,4 @@ DS.RESTAdapter.reopen
   url: 'http://localhost:3000'
   namespace: 'api/v1'
 
-Graude.Store = DS.Store.extend
-  adapter: DS.RESTAdapter.create()
+Graude.ApplicationAdapter = DS.RESTAdapter

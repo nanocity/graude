@@ -1,7 +1,15 @@
-Graude.TournamentsRoute = Ember.Route.extend
+Graude.TournamentsIndexRoute = Ember.Route.extend
   model: () ->
-    Graude.Tournament.find({})
+    return @store.findAll( 'tournament' )
 
-Graude.TournamentRoute = Ember.Route.extend
-  model: ( params ) ->
-    Graude.Tournament.find( params.tournament_id )
+Graude.TournamentsNewRoute = Ember.Route.extend
+  model: () ->
+    return @store.createRecord( 'tournament' )
+
+Graude.TournamentIndexRoute = Ember.Route.extend
+  model: () ->
+    this.modelFor( 'tournament' )
+
+Graude.TournamentEditRoute = Ember.Route.extend
+  model: () ->
+    this.modelFor( 'tournament' )

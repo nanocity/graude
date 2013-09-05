@@ -1,12 +1,7 @@
-<h2>Tournaments</h2>
-<ul>
-{{#each tournament in controller}}
-  <li>
-    {{#linkTo 'tournament' tournament}}
-      {{tournament.name}}
-    {{/linkTo}}
-  </li>
-{{/each}}
-</ul>
+<section>
+  <div class='page-header'>
+    <h1>Tournaments</h1>
+  </div>
 
-{{outlet}}
+  {{outlet}}
+</section>

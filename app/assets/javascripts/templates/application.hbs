@@ -1,16 +1,14 @@
-<div class="container">
-  <div class="row">
+{{ partial 'shared/navbar' }}
 
-    <div class="span2 bs-docs-sidebar">
-      <ul class="nav nav-list bs-docs-sidenav affix">
-        <li>{{#linkTo 'players'}}Players{{/linkTo}}</li>
-        <li>{{#linkTo 'tournaments'}}Tournaments{{/linkTo}}</li>
-      </ul>
+<div class='container'>
+  <div class='row'>
+
+    <div class='span3'>
+      {{ partial 'shared/sidebar' }}
     </div>
 
-    <div class="span10">
+    <div class="span9">
       {{outlet}}
     </div>
-
   </div>
 </div>

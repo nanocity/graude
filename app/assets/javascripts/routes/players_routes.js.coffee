@@ -1,3 +1,3 @@
-Graude.PlayersRoute = Ember.Route.extend
+Graude.PlayersIndexRoute = Ember.Route.extend
   model: ()->
-    return Graude.Player.find({})
+    return @store.findAll( 'player' )
