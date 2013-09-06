@@ -24,4 +24,24 @@ Graude = Ember.Application.create({
   LOG_TRANSITIONS: true
 });
 
+
+Ember.Application.initializer({
+  name: 'currentSession',
+
+  initialize: function(container, application) {
+    application.register( 'helper:session', Graude.SessionController );
+    application.inject( 'controller', 'currentSession', 'helper:session' );
+
+    var store = container.lookup( 'store:main' );
+    var controller = container.lookup( 'controller:session' );
+
+    store.find( 'session', 'ignore' ).then( function( session ){
+      if( session.get( 'id' )  && session.get( 'email' ) ){
+        controller.set( 'content', session );
+        controller.currentSession.set( 'content', session );
+      }
+    });
+  }
+});
+
 //= require_tree .

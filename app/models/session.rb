@@ -67,6 +67,9 @@ class Session
   api_accessible :session do |t|
     t.add :to_param, as: :id
     t.add :email
+  end
+
+  api_accessible :player, extend: :session do |t|
     t.add :name
     t.add :nick
   end

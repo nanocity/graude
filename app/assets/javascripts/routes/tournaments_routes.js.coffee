@@ -8,8 +8,8 @@ Graude.TournamentsNewRoute = Ember.Route.extend
 
 Graude.TournamentIndexRoute = Ember.Route.extend
   model: () ->
-    this.modelFor( 'tournament' )
+    @modelFor( 'tournament' )
 
 Graude.TournamentEditRoute = Ember.Route.extend
   model: () ->
-    this.modelFor( 'tournament' )
+    @modelFor( 'tournament' )

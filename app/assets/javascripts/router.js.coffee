@@ -7,3 +7,5 @@ Graude.Router.map () ->
     @route 'new'
     @resource 'tournament', { path: '/:tournament_id' }, () ->
       @route 'edit'
+
+  @resource 'session'

@@ -6753,7 +6753,6 @@ DS.RESTAdapter = DS.Adapter.extend({
   */
   deleteRecord: function(store, type, record) {
     var id = get(record, 'id');
-
     return this.ajax(this.buildURL(type.typeKey, id), "DELETE");
   },
 

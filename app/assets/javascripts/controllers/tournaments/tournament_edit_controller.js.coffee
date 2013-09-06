@@ -1,4 +1,4 @@
 Graude.TournamentEditController = Ember.ObjectController.extend
   actions:
-    editTournament: (params) ->
+    edit: (params) ->
       @content.save()
