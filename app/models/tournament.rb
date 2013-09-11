@@ -27,12 +27,13 @@ class Tournament
   field :players_limit, type: Integer
 
   # Relations
-  belongs_to :creator, class_name: "Session", inverse_of: :created_tournaments
-  has_many :participations
+  belongs_to :creator, class_name: 'Session', inverse_of: :created_tournaments
+  has_many :participations, dependent: :destroy
 
   # Validations
   validates_presence_of :name
   validates_presence_of :date
+  validates_presence_of :creator
 
   validates_datetime :date,
     on_or_after: :today
@@ -42,15 +43,20 @@ class Tournament
     even: true
 
   # Templates
-  api_accessible :tournament do |t|
+  api_accessible :tournament_id do |t|
     t.add :to_param, as: :id
+  end
+
+  api_accessible :tournament_resume, extend: :tournament_id do |t|
     t.add :name
     t.add :description
     t.add :address
     t.add :date
     t.add :coordinates
     t.add :players_limit
+  end
 
+  api_accessible :tournament, extend: :tournament_resume do |t|
     t.add :creator, template: :session
     t.add :participations, template: :participation
   end

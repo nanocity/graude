@@ -53,7 +53,7 @@ class Session
   field :name,  :type => String, :default => ''
   field :nick,  :type => String, :default => ''
 
-  has_many :created_tournaments, class_name: "Tournament", inverse_of: :creator
+  has_many :created_tournaments, class_name: 'Tournament', inverse_of: :creator
   has_many :participations
 
   validates_uniqueness_of :email
@@ -63,9 +63,11 @@ class Session
 
   validates_format_of :email, with: Devise::email_regexp
 
-
-  api_accessible :session do |t|
+  api_accessible :session_id do |t|
     t.add :to_param, as: :id
+  end
+
+  api_accessible :session, extend: :session_id do |t|
     t.add :email
   end
 

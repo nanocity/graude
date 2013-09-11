@@ -5,6 +5,7 @@ Graude.ApplicationRoute = Ember.Route.extend
       id = controller.currentSession.get( 'id' )
       controller.currentSession.setProperties( email: undefined )
 
-      @store.find( 'session', id ).then ( session ) ->
+      @store.find( 'session', id ).then( ( session ) ->
         session.deleteRecord()
-        controller.store.commit()
+        session.save()
+      )

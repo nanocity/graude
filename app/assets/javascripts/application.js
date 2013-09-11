@@ -7,7 +7,7 @@
 // It's not advisable to add code directly here, but if you do, it'll appear at the bottom of the
 // compiled file.
 //
-// Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
+// Read Sprockets README (https://github.com/sstephenson/sprockets//sprockets-directives) for details
 // about supported directives.
 //
 //= require jquery
@@ -19,29 +19,31 @@
 //= require_self
 //= require graude
 
-// for more details see: http://emberjs.com/guides/application/
+//for more details see: http://emberjs.com/guides/application/
 Graude = Ember.Application.create({
   LOG_TRANSITIONS: true
-});
-
+})
 
 Ember.Application.initializer({
   name: 'currentSession',
 
-  initialize: function(container, application) {
+  initialize: function( container, application ){
     application.register( 'helper:session', Graude.SessionController );
     application.inject( 'controller', 'currentSession', 'helper:session' );
 
     var store = container.lookup( 'store:main' );
     var controller = container.lookup( 'controller:session' );
 
-    store.find( 'session', 'ignore' ).then( function( session ){
-      if( session.get( 'id' )  && session.get( 'email' ) ){
-        controller.set( 'content', session );
+    store.findAll( 'session' ).then( function( sessions ){
+      if( session = sessions.objectAt( 0 ) )
         controller.currentSession.set( 'content', session );
-      }
     });
   }
+});
+
+Ember.RSVP.configure( 'onerror', function(error){
+  console.log( error.message );
+  console.log( error.stack );
 });
 
 //= require_tree .

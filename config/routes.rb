@@ -3,9 +3,15 @@ Graude::Application.routes.draw do
     namespace :v1 do
       devise_for :sessions
 
-      resources :players, only: [:index, :show]
-      resources :tournaments, except: [:new, :edit]
-      resources :sessions, only: [:show, :destroy]
+      resources :sessions, only: [ :index, :destroy ]
+      resources :players,  only: [ :index, :show ]
+
+      resources :tournaments, except: [ :create, :edit ] do
+        resources :participations, only: [ :index, :show, :create ]
+      end
+
+      # Plain resources (Use Shallow!)
+      resources :participations, only: [ :index, :show, :create ]
     end
   end
 

@@ -8,15 +8,17 @@ class Participation
   STATUSES = [ :pending, :confirmed, :terminated ]
 
   # Fields
-  field :status
+  field :status, default: :pending
 
   # Relations
   belongs_to :tournament
   belongs_to :session
 
+  delegate :name, :nick, :email, to: :session, prefix: false
+
   # Validations
-  validates_presence_of :player
-  validates_uniqueness_of :player, scope: :tournament
+  validates_presence_of :session
+  validates_uniqueness_of :session, scope: :tournament
 
   validates_inclusion_of :status, in: STATUSES
   validates_inclusion_of :status, in: [ :pending ], on: :create
@@ -25,14 +27,16 @@ class Participation
 
   api_accessible :participation do |t|
     t.add :to_param, as: :id
-    t.add :session
+    t.add :name
+    t.add :nick
+    t.add :email
     t.add :status
   end
 
   private
     def players_limit
       # Add a message
-      errors.add( :tournament, '' ) unless self.vacancy?
+      errors.add( :tournament, 'has been reached' ) unless vacancy?
     end
 
     def vacancy?

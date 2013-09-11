@@ -1,12 +1,26 @@
-<ul>
-{{#each tournament in controller}}
-  <li>
-    {{#linkTo 'tournament' tournament}}
-      {{tournament.name}}
-    {{/linkTo}}
-  </li>
-{{/each}}
-</ul>
+<table class='table table-condensed table-stripped table-hover'>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Address</th>
+      <th>Date</th>
+      <th>Players</th>
+      <th>Me</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    {{#each tournament in controller}}
+      {{#link-to 'tournament' tournament tagName='tr'}}
+        <td>{{tournament.name}}</td>
+        <td>{{tournament.address}}</td>
+        <td>{{tournament.date}}</td>
+        <td>{{tournament.currentPlayers}}</td>
+        <td>{{tournament.currentSessionParticipation}}</td>
+      {{/link-to}}
+    {{/each}}
+  </tbody>
+</table>
 
 {{#link-to 'tournaments.new' classNames=[btn btn-primary btn-small]}}
   <i class='icon-white icon-plus'></i>
