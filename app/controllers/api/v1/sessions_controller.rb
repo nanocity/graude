@@ -3,7 +3,7 @@ class Api::V1::SessionsController < Api::V1::ApplicationController
   skip_before_filter :authenticate_session!, only: :index
 
   def index
-    respond_with [ current_session ].compact, api_template: :session, root: 'sessions'
+    respond_with [current_session].compact, api_template: :player, root: 'sessions'
   end
 
   def destroy

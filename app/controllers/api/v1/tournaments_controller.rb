@@ -3,11 +3,11 @@ class Api::V1::TournamentsController < Api::V1::ApplicationController
   authorize_resource
 
   def index
-    respond_with @tournaments, api_template: :tournament
+    respond_with @tournaments
   end
 
   def show
-    respond_with @tournament, api_template: :tournament
+    respond_with @tournament
   end
 
   def create
@@ -15,17 +15,17 @@ class Api::V1::TournamentsController < Api::V1::ApplicationController
     @tournament.creator = current_session
     @tournament.save
 
-    respond_with @tournament, api_template: :tournament, location: api_v1_tournament_url( @tournament )
+    respond_with @tournament
   end
 
   def update
     @tournament.update_attributes( tournament_params )
-    respond_with @tournament, api_template: :tournament, location: api_v1_tournament_url( @tournament )
+    respond_with @tournament
   end
 
   def destroy
     @tournament.destroy
-    respond_with @tournament, api_template: :tournament, location: api_v1_tournament_url( @tournament )
+    respond_with @tournament
   end
 
   private

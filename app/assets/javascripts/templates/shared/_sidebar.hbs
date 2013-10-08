@@ -1,3 +1,11 @@
+{{#if currentSession.isLoggedIn}}
+  <div>
+    <img {{bindAttr src=currentSession.avatar}} />
+    {{currentSession.name}}
+    {{currentSession.nick}}
+  </div>
+{{/if}}
+
 <ul class='nav nav-list'>
   <li>
     {{#link-to 'players'}}Players{{/link-to}}

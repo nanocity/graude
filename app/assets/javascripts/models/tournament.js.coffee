@@ -4,3 +4,5 @@ Graude.Tournament = DS.Model.extend
   address:       DS.attr( 'string' )
   date:          DS.attr( 'date' )
   players_limit: DS.attr( 'number' )
+
+  participations: DS.hasMany( 'participation' )

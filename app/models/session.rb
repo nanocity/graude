@@ -1,8 +1,6 @@
 class Session
   include Mongoid::Document
 
-  acts_as_api
-
   # Include default devise modules. Others available are:
   # :confirmable
   # :lockable
@@ -49,9 +47,10 @@ class Session
   field :current_sign_in_ip, :type => String
   field :last_sign_in_ip,    :type => String
 
-  field :email, :type => String, :default => ''
-  field :name,  :type => String, :default => ''
-  field :nick,  :type => String, :default => ''
+  field :email,  :type => String, :default => ''
+  field :name,   :type => String, :default => ''
+  field :nick,   :type => String, :default => ''
+  field :avatar, :type => String, :default => ''
 
   has_many :created_tournaments, class_name: 'Tournament', inverse_of: :creator
   has_many :participations
@@ -62,17 +61,4 @@ class Session
   validates_presence_of :name
 
   validates_format_of :email, with: Devise::email_regexp
-
-  api_accessible :session_id do |t|
-    t.add :to_param, as: :id
-  end
-
-  api_accessible :session, extend: :session_id do |t|
-    t.add :email
-  end
-
-  api_accessible :player, extend: :session do |t|
-    t.add :name
-    t.add :nick
-  end
 end

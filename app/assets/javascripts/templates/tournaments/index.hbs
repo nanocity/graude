@@ -10,19 +10,19 @@
   </thead>
 
   <tbody>
-    {{#each tournament in controller}}
-      {{#link-to 'tournament' tournament tagName='tr'}}
-        <td>{{tournament.name}}</td>
-        <td>{{tournament.address}}</td>
-        <td>{{tournament.date}}</td>
-        <td>{{tournament.currentPlayers}}</td>
-        <td>{{tournament.currentSessionParticipation}}</td>
+    {{#each}}
+      {{#link-to 'tournament' this tagName='tr'}}
+        <td>{{name}}</td>
+        <td>{{address}}</td>
+        <td>{{date}}</td>
+        <td>{{currentPlayers}}</td>
+        <td></td>
       {{/link-to}}
     {{/each}}
   </tbody>
 </table>
 
-{{#link-to 'tournaments.new' classNames=[btn btn-primary btn-small]}}
+{{#link-to 'tournaments.new' classNames='btn btn-primary btn-small'}}
   <i class='icon-white icon-plus'></i>
   New tournament
 {{/link-to}}

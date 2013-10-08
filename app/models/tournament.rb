@@ -2,8 +2,6 @@ class Tournament
   include Mongoid::Document
   include Mongoid::Paperclip
 
-  acts_as_api
-
   MINIMUM_PLAYERS = 4
 
   # Descriptive fields
@@ -42,22 +40,4 @@ class Tournament
     greater_than_or_equal_to: MINIMUM_PLAYERS,
     even: true
 
-  # Templates
-  api_accessible :tournament_id do |t|
-    t.add :to_param, as: :id
-  end
-
-  api_accessible :tournament_resume, extend: :tournament_id do |t|
-    t.add :name
-    t.add :description
-    t.add :address
-    t.add :date
-    t.add :coordinates
-    t.add :players_limit
-  end
-
-  api_accessible :tournament, extend: :tournament_resume do |t|
-    t.add :creator, template: :session
-    t.add :participations, template: :participation
-  end
 end

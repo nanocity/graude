@@ -3,8 +3,6 @@ class Participation
   include Mongoid::Timestamps
   include Mongoid::Paperclip
 
-  acts_as_api
-
   STATUSES = [ :pending, :confirmed, :terminated ]
 
   # Fields
@@ -25,17 +23,12 @@ class Participation
 
   validate :players_limit, on: :create
 
-  api_accessible :participation do |t|
-    t.add :to_param, as: :id
-    t.add :name
-    t.add :nick
-    t.add :email
-    t.add :status
+  def id_param
+    self.id.to_param
   end
 
   private
     def players_limit
-      # Add a message
       errors.add( :tournament, 'has been reached' ) unless vacancy?
     end
 

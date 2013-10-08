@@ -1,6 +1,4 @@
 class Api::V1::ApplicationController < ApplicationController
-  self.responder = ActsAsApi::Responder
-
   before_filter :authenticate_session!
 
   respond_to :json

@@ -16,6 +16,7 @@
 //= require handlebars
 //= require ember
 //= require ember-data
+//= require bootstrap-datepicker
 //= require_self
 //= require graude
 
@@ -23,23 +24,6 @@
 Graude = Ember.Application.create({
   LOG_TRANSITIONS: true
 })
-
-Ember.Application.initializer({
-  name: 'currentSession',
-
-  initialize: function( container, application ){
-    application.register( 'helper:session', Graude.SessionController );
-    application.inject( 'controller', 'currentSession', 'helper:session' );
-
-    var store = container.lookup( 'store:main' );
-    var controller = container.lookup( 'controller:session' );
-
-    store.findAll( 'session' ).then( function( sessions ){
-      if( session = sessions.objectAt( 0 ) )
-        controller.currentSession.set( 'content', session );
-    });
-  }
-});
 
 Ember.RSVP.configure( 'onerror', function(error){
   console.log( error.message );

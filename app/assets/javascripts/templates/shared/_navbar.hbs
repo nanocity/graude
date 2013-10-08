@@ -7,21 +7,15 @@
         <span class='icon-bar'></span>
       </button>
 
-      {{#link-to 'index' classNames=[brand]}}Graude{{/link-to}}
+      {{#link-to 'index' class='brand'}}Graude{{/link-to}}
 
-      {{#if currentSession.isLoggedIn}}
+      <div class='nav-collapse collapse'>
         <p class='navbar-text pull-right'>
-          You are logged in as {{currentSession.email}}. <a href='#' {{action destroySession}}>Log out</a>
+          Log in with:
+          <a href='/api/v1/session/auth/github'><i class='icon-github-sign icon-2x'></i></a>
+          <a href='/api/v1/session/auth/facebook'><i class='icon-facebook-sign icon-2x'></i></a>
         </p>
-      {{else}}
-        <div class='nav-collapse collapse'>
-          <p class='navbar-text pull-right'>
-            Log in with:
-            <a href='/api/v1/session/auth/github'><i class='icon-github-sign icon-2x'></i></a>
-            <a href='/api/v1/session/auth/facebook'><i class='icon-facebook-sign icon-2x'></i></a>
-          </p>
-        </div>
-      {{/if}}
+      </div>
     </div>
   </div>
 </div>

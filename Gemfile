@@ -3,21 +3,20 @@ source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.0'
 
-gem 'mongoid',     github: 'mongoid/mongoid', branch: 'master'
+gem 'mongoid', github: 'mongoid/mongoid'
 
-gem 'devise',          '~> 3.0.0'
+gem 'devise',          '~> 3.1.1'
 gem 'omniauth',        '~> 1.1.4'
 gem 'omniauth-github', '~> 1.1.1'
 
 gem 'cancan', '~> 1.6.10'
 
-gem 'acts_as_api', '~> 0.4.1'
 gem 'validates_timeliness', '~> 3.0.14'
-gem 'mongoid-paperclip', '~> 0.0.8', require: 'mongoid_paperclip'
-gem 'aws-sdk', '~> 1.3.4'
+gem 'mongoid-paperclip',    '~> 0.0.8', require: 'mongoid_paperclip'
+gem 'aws-sdk',              '~> 1.3.4'
 
 gem 'ember-rails'
-gem 'ember-source', '1.0.0.rc6.2'
+gem 'ember-source', '1.0.0'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'

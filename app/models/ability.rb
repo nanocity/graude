@@ -2,11 +2,15 @@ class Ability
   include CanCan::Ability
 
   def initialize( session )
-    can [ :read, :create ], Tournament
-    can [ :update, :destroy ], Tournament, creator_id: session.id
+    if session
+      can [ :read ], Session
 
-    can [ :read, :create ], Participation
-    can [ :destroy ], Participation, session_id: session.id
+      can [ :read, :create ], Tournament
+      can [ :update, :destroy ], Tournament, creator_id: session.id
+
+      can [ :read, :create ], Participation
+      can [ :destroy ], Participation, session_id: session.id
+    end
 
     # Define abilities for the passed in user here. For example:
     #

@@ -1,6 +1,8 @@
 class Api::V1::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   def github
-    self.resource = Session.find_or_create_by( github_params )
+    self.resource = Session.find_or_create_by( email: github_params[:email] )
+    self.resource.update_attributes( github_params )
+    self.resource.save
 
     sign_in( resource_name, resource )
     redirect_to( after_omniauth_sign_in_path_for( resource ) )
@@ -9,9 +11,10 @@ class Api::V1::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   private
     def github_params
       {
-        email: request.env['omniauth.auth'].info.email,
-        name:  request.env['omniauth.auth'].info.name,
-        nick:  request.env['omniauth.auth'].info.nickname
+        email:   request.env['omniauth.auth'].info.email,
+        name:    request.env['omniauth.auth'].info.name,
+        nick:    request.env['omniauth.auth'].info.nickname,
+        avatar:  request.env['omniauth.auth'].info.image
       }
     end
 

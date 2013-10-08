@@ -1,11 +1,11 @@
 class Api::V1::PlayersController < Api::V1::ApplicationController
+  load_and_authorize_resource :session, parent: false
+
   def index
-    players = Session.all
-    respond_with players, api_template: :player, root: 'players'
+    respond_with @sessions
   end
 
   def show
-    player = Session.find( params[:id] )
-    respond_with player, api_template: :player, root: 'player'
+    respond_with @session
   end
 end

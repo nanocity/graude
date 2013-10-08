@@ -4,7 +4,5 @@ Graude.Router.map () ->
   @resource 'players'
 
   @resource 'tournaments', () ->
-    @route 'new'
     @resource 'tournament', { path: '/:tournament_id' }, () ->
 
-  @resource 'session'
