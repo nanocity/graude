@@ -1,0 +1,9 @@
+<div class='span8'>
+  Dashboard
+</div>
+
+<div class='span4'>
+  {{#if currentSession.isLoggedIn}}
+    {{render 'createdTournaments' currentSession.tournaments }}
+  {{/if}}
+</div>

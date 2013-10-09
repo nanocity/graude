@@ -40,4 +40,7 @@ class Tournament
     greater_than_or_equal_to: MINIMUM_PLAYERS,
     even: true
 
+  def id_param
+    self.id.to_param
+  end
 end

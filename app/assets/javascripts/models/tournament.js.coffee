@@ -6,3 +6,5 @@ Graude.Tournament = DS.Model.extend
   players_limit: DS.attr( 'number' )
 
   participations: DS.hasMany( 'participation' )
+
+  creator: DS.belongsTo( 'session', inverse: 'tournaments' )

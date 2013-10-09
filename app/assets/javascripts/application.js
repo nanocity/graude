@@ -19,6 +19,7 @@
 //= require bootstrap-datepicker
 //= require_self
 //= require graude
+//= require initializers
 
 //for more details see: http://emberjs.com/guides/application/
 Graude = Ember.Application.create({

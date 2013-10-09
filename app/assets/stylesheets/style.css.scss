@@ -1,4 +1,48 @@
 body {
   padding-top: 60px;
   padding-bottom: 40px;
+  font: Helvetica;
+}
+
+// Boxes
+.box {
+  margin-bottom: 20px;
+  border-radius: 4px 4px 4px 4px;
+  border: 1px solid #D5D5D5;
+}
+
+.box-header {
+  border-radius: 4px 4px 0px 0px;
+  background-image: linear-gradient( #FAFAFA, #EAEAEA );
+  min-height: 30px;
+  padding: 5px;
+}
+
+.box-body {
+  border-radius: 0px 0px 4px 4px;
+}
+
+.box-header > .box-title {
+  float: left;
+  font-size: 14px;
+  line-height: 1;
+  color: #555555;
+}
+
+.box-header > .btn {
+  float: right;
+}
+
+// Tournament Lists
+ul.tournament-list {
+  padding: 0;
+  margin: 0;
+
+  list-style: none;
+}
+
+li.tournament-list-item {
+  padding: 6px 10px 6px 10px;
+  font-size: 12px;
+  border-top: 1px solid #E5E5E5;
 }

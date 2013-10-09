@@ -5,4 +5,4 @@ Graude.Router.map () ->
 
   @resource 'tournaments', () ->
     @resource 'tournament', { path: '/:tournament_id' }, () ->
-
+    @route 'new'

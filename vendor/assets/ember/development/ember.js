@@ -8,8 +8,8 @@
 // ==========================================================================
 
 
-// Version: v1.0.0-246-g9b24606
-// Last commit: 9b24606 (2013-10-07 01:47:34 -0700)
+// Version: v1.0.0-253-g65cec9d
+// Last commit: 65cec9d (2013-10-08 20:04:02 -0700)
 
 
 (function() {
@@ -196,8 +196,8 @@ if (!Ember.testing) {
 // ==========================================================================
 
 
-// Version: v1.0.0-246-g9b24606
-// Last commit: 9b24606 (2013-10-07 01:47:34 -0700)
+// Version: v1.0.0-253-g65cec9d
+// Last commit: 65cec9d (2013-10-08 20:04:02 -0700)
 
 
 (function() {
@@ -12682,7 +12682,7 @@ Ember.RSVP = requireModule('rsvp');
 
 var STRING_DASHERIZE_REGEXP = (/[ _]/g);
 var STRING_DASHERIZE_CACHE = {};
-var STRING_DECAMELIZE_REGEXP = (/([a-z])([A-Z])/g);
+var STRING_DECAMELIZE_REGEXP = (/([a-z\d])([A-Z])/g);
 var STRING_CAMELIZE_REGEXP = (/(\-|_|\.|\s)+(.)?/g);
 var STRING_UNDERSCORE_REGEXP_1 = (/([a-z\d])([A-Z]+)/g);
 var STRING_UNDERSCORE_REGEXP_2 = (/\-|\s+/g);
@@ -24341,7 +24341,8 @@ if (Handlebars.compile) {
 })();
 
 (function() {
-var slice = Array.prototype.slice;
+var slice = Array.prototype.slice,
+    originalTemplate = Ember.Handlebars.template;
 
 /**
   @private
@@ -24813,10 +24814,10 @@ function evaluateUnboundHelper(context, fn, normalizedProperties, options) {
 
   @method template
   @for Ember.Handlebars
-  @param {String} template spec
+  @param {String} spec
 */
 Ember.Handlebars.template = function(spec) {
-  var t = Handlebars.template(spec);
+  var t = originalTemplate(spec);
   t.isTop = true;
   return t;
 };
@@ -26054,10 +26055,17 @@ function makeBindings(thisContext, options) {
 
   for (var prop in hash) {
     if (hashType[prop] === 'ID') {
-      hash[prop + 'Binding'] = hash[prop];
-      hashType[prop + 'Binding'] = 'STRING';
-      delete hash[prop];
-      delete hashType[prop];
+
+      var value = hash[prop];
+
+      if (Ember.IS_BINDING.test(prop)) {
+        Ember.warn("You're attempting to render a view by passing " + prop + "=" + value + " to a view helper, but this syntax is ambiguous. You should either surround " + value + " in quotes or remove `Binding` from " + prop + ".");
+      } else {
+        hash[prop + 'Binding'] = value;
+        hashType[prop + 'Binding'] = 'STRING';
+        delete hash[prop];
+        delete hashType[prop];
+      }
     }
   }
 
