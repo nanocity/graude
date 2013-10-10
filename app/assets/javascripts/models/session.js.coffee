@@ -4,4 +4,7 @@ Graude.Session = DS.Model.extend
   nick:   DS.attr( 'string' )
   avatar: DS.attr( 'string' )
 
-  tournaments: DS.hasMany( 'tournament', inverse: 'creator' )
+  participations: DS.hasMany( 'participation' )
+
+  created_tournaments: DS.hasMany( 'tournament', inverse: 'creator' )
+  participating_tournaments: DS.hasMany( 'tournament', inverse: 'participators' )

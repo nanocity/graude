@@ -1,4 +1,4 @@
-Graude.CreatedTournamentsController = Ember.ArrayController.extend
+Graude.ParticipatingTournamentsController = Ember.ArrayController.extend
   itemController: 'tournament'
 
   tournaments_count: ( () ->

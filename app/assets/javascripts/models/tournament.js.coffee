@@ -7,4 +7,5 @@ Graude.Tournament = DS.Model.extend
 
   participations: DS.hasMany( 'participation' )
 
-  creator: DS.belongsTo( 'session', inverse: 'tournaments' )
+  creator: DS.belongsTo( 'session', inverse: 'created_tournaments' )
+  participators: DS.hasMany( 'session', inverse: 'participating_tournaments' )

@@ -1,10 +1,6 @@
 <div class='box'>
   <div class='box-header'>
-    <h3 class='box-title'>My tournaments ({{tournaments_count}})</h3>
-    {{#link-to 'tournaments.new' class='btn btn-small btn-warning' }}
-      <i class='icon-plus'></i>
-      Create new
-    {{/link-to}}
+    <h3 class='box-title'>Participating tournaments ({{tournaments_count}})</h3>
   </div>
 
   <div class='box-body'>
@@ -15,11 +11,12 @@
           <a href='#'>
             <span>{{name}}</span>
           </a>
-          <span class='participants'>({{currentPlayers}})</span>
+
+          <span {{bind-attr class=':label statusLabelClass'}}>{{status}}</span>
         {{/link-to}}
       {{else}}
         <li>
-          <span><i>You have not created any tournament</i></span>
+          <span><i>You have not participated in any tournament</i></span>
         </li>
       {{/each}}
     </ul>

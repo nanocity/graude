@@ -9,6 +9,6 @@ Ember.Application.initializer
     controller = container.lookup( 'controller:login' )
 
     store.findAll( 'session' ).then( ( sessions ) ->
-      if session = sessions.objectAt(0)
+      if( session = sessions.objectAt(0) )
         controller.currentSession.set( 'session', session );
     )

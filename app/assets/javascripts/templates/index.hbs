@@ -4,6 +4,7 @@
 
 <div class='span4'>
   {{#if currentSession.isLoggedIn}}
-    {{render 'createdTournaments' currentSession.tournaments }}
+    {{render 'createdTournaments' currentSession.created_tournaments }}
+    {{render 'participatingTournaments' currentSession.participating_tournaments }}
   {{/if}}
 </div>

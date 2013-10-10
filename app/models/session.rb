@@ -61,4 +61,16 @@ class Session
   validates_presence_of :name
 
   validates_format_of :email, with: Devise::email_regexp
+
+  def participating_tournaments
+    Tournament.where( :id.in => participating_tournaments_ids )
+  end
+
+  private
+    def participating_tournaments_ids
+      map    = %Q{ function(){ emit( this.tournament_id, {} ); } }
+      reduce = %Q{ function(key, values){ return key } }
+
+      self.participations.map_reduce(map, reduce).out( inline: 1 ).map{ |d| d['_id'] }
+    end
 end

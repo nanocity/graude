@@ -46,3 +46,7 @@ li.tournament-list-item {
   font-size: 12px;
   border-top: 1px solid #E5E5E5;
 }
+
+li.tournament-list-item .label, li.tournament-list-item .participants {
+  float: right;
+}
