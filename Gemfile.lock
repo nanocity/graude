@@ -139,6 +139,8 @@ GEM
     omniauth-oauth2 (1.1.1)
       oauth2 (~> 0.8.0)
       omniauth (~> 1.0)
+    openlayers-rails (0.0.3)
+      railties (>= 3.1)
     optionable (0.1.1)
     origin (1.1.0)
     orm_adapter (0.4.0)
@@ -224,6 +226,7 @@ DEPENDENCIES
   mongoid-paperclip (~> 0.0.8)
   omniauth (~> 1.1.4)
   omniauth-github (~> 1.1.1)
+  openlayers-rails
   rails (= 4.0.0)
   sass-rails (~> 4.0.0)
   sdoc

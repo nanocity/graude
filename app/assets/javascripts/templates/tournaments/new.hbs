@@ -1,0 +1,16 @@
+<form class='tournament' {{action save on='submit'}}>
+  <div class='span3 poster-container'>
+  </div>
+
+  <fieldset class='span5'>
+    {{input type='text' value=name placeholder='Tournament name'}}
+    {{view Graude.DatePickerView}}
+    {{input type='number' value=players_limit placeholder='Max. players'}}
+
+    {{textarea value=desciption placeholder='Description'}}
+  </fieldset>
+
+  <div class='span4 geolocation'>
+    {{view Graude.GeolocationView}}
+  </div>
+</form>
