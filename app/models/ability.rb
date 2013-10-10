@@ -10,6 +10,7 @@ class Ability
 
       can [ :read, :create ], Participation
       can [ :destroy ], Participation, session_id: session.id
+      can [ :update ], Participation, tournament: { creator_id: session.id }
     end
 
     # Define abilities for the passed in user here. For example:

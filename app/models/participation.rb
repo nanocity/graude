@@ -8,9 +8,10 @@ class Participation
   # Fields
   field :status, default: :pending
 
-  # Relations
+  # Associations
   belongs_to :tournament
   belongs_to :session
+  has_one :army_list
 
   delegate :name, :nick, :email, to: :session, prefix: false
 

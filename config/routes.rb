@@ -7,7 +7,7 @@ Graude::Application.routes.draw do
       resources :players,  only: [ :index, :show ]
 
       resources :tournaments, except: [ :new, :edit ] do
-        resources :participations, only: [ :index, :show, :new ]
+        resources :participations, except: [ :new, :edit ]
       end
     end
   end

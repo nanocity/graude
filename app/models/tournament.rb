@@ -24,7 +24,7 @@ class Tournament
   # Configuration fields
   field :players_limit, type: Integer
 
-  # Relations
+  # Associations
   belongs_to :creator, class_name: 'Session', inverse_of: :created_tournaments
   has_many :participations, dependent: :destroy
 
