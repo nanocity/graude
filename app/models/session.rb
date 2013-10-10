@@ -68,9 +68,13 @@ class Session
 
   private
     def participating_tournaments_ids
-      map    = %Q{ function(){ emit( this.tournament_id, {} ); } }
-      reduce = %Q{ function(key, values){ return key } }
+      if not participations.empty?
+        map    = %Q{ function(){ emit( this.tournament_id, {} ); } }
+        reduce = %Q{ function(key, values){ return key } }
 
-      self.participations.map_reduce(map, reduce).out( inline: 1 ).map{ |d| d['_id'] }
+        self.participations.map_reduce(map, reduce).out( inline: 1 ).map{ |d| d['_id'] }
+      else
+        []
+      end
     end
 end
