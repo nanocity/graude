@@ -7,4 +7,11 @@ Graude.DatePickerView = Ember.View.extend
   data_date_format: 'dd-mm-yyyy'
 
   didInsertElement: () ->
-    $( '.input-append.date' ).datepicker()
+    self = @
+    $( '.input-append.date' ).datepicker().on( 'changeDate', (event) ->
+      self.set( 'controller.model.date', event.date )
+    )
+
+  dateFormat: ( () ->
+    $( '.input-append.date' ).datepicker( 'setValue', moment( @get( 'controller.model.date' ) ).format( 'DD-MM-YYYY' ) )
+  ).observes( 'controller.model.date' )

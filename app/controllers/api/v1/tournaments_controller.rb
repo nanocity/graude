@@ -15,7 +15,7 @@ class Api::V1::TournamentsController < Api::V1::ApplicationController
     @tournament.creator = current_session
     @tournament.save
 
-    respond_with @tournament
+    respond_with @tournament, location: api_v1_tournament_url( @tournament )
   end
 
   def update

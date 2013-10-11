@@ -3,6 +3,10 @@ class Api::V1::ApplicationController < ApplicationController
 
   respond_to :json
 
+  rescue_from Mongoid::Errors::DocumentNotFound do
+    render nothing: true, status: :not_found
+  end
+
   def current_ability
     @current_ability || Ability.new( current_api_v1_session )
   end

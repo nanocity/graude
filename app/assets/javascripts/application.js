@@ -18,6 +18,7 @@
 //= require ember-data
 //= require bootstrap-datepicker
 //= require openlayers-rails
+//= require moment.min
 //= require_self
 //= require graude
 //= require initializers

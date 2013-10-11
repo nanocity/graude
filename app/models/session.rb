@@ -62,6 +62,10 @@ class Session
 
   validates_format_of :email, with: Devise::email_regexp
 
+  def id_param
+    self.id.to_param
+  end
+
   def participating_tournaments
     Tournament.where( :id.in => participating_tournaments_ids )
   end
