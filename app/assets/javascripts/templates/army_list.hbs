@@ -3,7 +3,7 @@
   <span class='last-update pull-rigth'>Last updated: {{formatDate updated_at 'HH:mm:ss DD/MM/YYYY'}}</span>
 </div>
 
-<form {{action update_list on='submit'}}>
+<form {{action armyListUpdate on='submit'}}>
   <fieldset>
     {{textarea value=list placeholder='Army list' class='list'}}
     {{input class='btn btn-primary pull-right' type='submit' value='Update'}}

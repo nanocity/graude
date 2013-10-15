@@ -41,10 +41,3 @@ Graude.TournamentRoute = Ember.Route.extend
       if session.get( 'isLoggedIn' ) and participation
         participation.deleteRecord()
         participation.save()
-
-
-    update_list: () ->
-      session = @controllerFor( 'tournament' ).currentSession
-      participation = @controllerFor( 'tournament' ).get( 'currentParticipation' )
-      if session.get( 'isLoggedIn' ) and participation
-        participation.get( 'army_list' ).save()

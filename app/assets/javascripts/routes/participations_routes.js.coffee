@@ -4,14 +4,23 @@ Graude.ParticipationsRoute = Ember.Route.extend
 
 Graude.ParticipationRoute = Ember.Route.extend
   actions:
-    new: () ->
+    commnetNew: () ->
       controller = @controllerFor( 'comment.new' )
-      comment = @store.createRecord( 'comment' )
-      comment.set( 'body', controller.get( 'body' ) )
-      comment.set( 'army_list', @currentModel.get( 'army_list' ) )
-      comment.save().then(
-        (model) ->
-          controller.set( 'body', '' )
-      )
+      if controller.currentSession.get( 'isLoggedIn' )
+        comment = @store.createRecord( 'comment' )
+        comment.setProperties(
+          'body', controller.get( 'body' )
+          'army_list', @currentModel.get( 'army_list' )
+        )
 
+        comment.save().then(
+          ( model ) ->
+            controller.set( 'body', '' )
+        )
 
+    armyListUpdate: () ->
+      controller = @controllerFor( 'participation' )
+      participation = @currentModel
+
+      if controller.currentSession.get( 'isLoggedIn' )
+        participation.get( 'army_list' ).save()
