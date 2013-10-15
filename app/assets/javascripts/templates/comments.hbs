@@ -1,0 +1,22 @@
+<span>Comments:</span>
+
+{{#each}}
+  <div class='comment-container'>
+    <div class='avatar'>
+      <img class='img-polaroid' {{bind-attr src=session_avatar}} />
+    </div>
+    <div class='comment'>
+      <div class='header'>
+        {{#link-to 'players' }}
+          {{session_name}}
+        {{/link-to}}
+        <span class='date'>{{formatDate created_at 'HH:mm:ss DD/MM/YYYY'}}</span>
+      </div>
+      <div class='body'>
+        {{body}}
+      </div>
+    </div>
+  </div>
+{{/each}}
+
+{{render 'comment.new'}}

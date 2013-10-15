@@ -11,7 +11,7 @@ class Participation
   # Associations
   belongs_to :tournament
   belongs_to :session
-  has_one :army_list
+  has_one :army_list, dependent: :destroy
 
   delegate :name, :nick, :email, to: :session, prefix: false
 

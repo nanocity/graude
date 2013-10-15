@@ -1,7 +1,28 @@
-<div>
-  {{name}}
-  {{description}}
-  {{address}}
-  {{date}}
-  {{currentPlayers}}
+<h3>Tournament: {{name}}</h3>
+<div class='row'>
+  <div class='span3'>
+    <div class='poster-add'>
+      <img class='img-rounded' src='http://www.campeonesdegaia.com/wp-content/uploads/2012/02/campeones_de_gaia_web-723x1024.jpg' />
+    </div>
+  </div>
+
+  <div class='span4'>
+    <p><strong>Name:</strong> {{name}}</p>
+    <p><strong>Date:</strong> {{date}}</p>
+    <p><strong>Description:</strong> {{description}}</p>
+    <p><strong>Current Players:</strong> {{players}}</p>
+  </div>
+
+  <div class='span4'>
+    {{#if currentParticipation}}
+      <input type='button' class='btn btn-danger' value='Unsubcribe' {{action unsubscribe}} >
+    {{else}}
+      <input type='button' class='btn btn-primary' value='Subscribe' {{action subscribe}} >
+    {{/if}}
+    <p><strong>Address:</strong> {{address}}</p>
+  </div>
+</div>
+
+<div class='row'>
+  {{outlet}}
 </div>

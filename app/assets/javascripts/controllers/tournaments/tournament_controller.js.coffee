@@ -1,17 +1,25 @@
 Graude.TournamentController = Ember.ObjectController.extend
-  currentPlayers: ( () ->
+  players: ( () ->
     return "#{@get('participations').get('length')}/#{@get('players_limit')}"
   ).property('players_limit', 'participations')
 
-  status: ( () ->
+  currentParticipation: ( () ->
     session_id = @currentSession.get( 'session.id' )
+
     @get( 'participations' ).filter( ( item, index, self ) ->
       item.get( 'session.id' ) == session_id
-    ).objectAt(0).get( 'status' ).capitalize()
+    ).objectAt(0)
   ).property( 'participations' )
 
-  statusLabelClass: ( () ->
-    switch @get( 'status' )
+  currentParticipationStatus: ( () ->
+    if participation = @get( 'currentParticipation' )
+      participation.get( 'status' ).capitalize()
+  ).property( 'participations' )
+
+  currentParticipationStatusLabelClass: ( () ->
+    switch @get( 'currentStatus' )
       when "Pending" then "label-warning"
       else "default"
   ).property( 'status' )
+
+

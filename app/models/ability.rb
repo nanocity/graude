@@ -8,9 +8,14 @@ class Ability
       can [ :read, :create ], Tournament
       can [ :update, :destroy ], Tournament, creator_id: session.id
 
-      can [ :read, :create ], Participation
-      can [ :destroy ], Participation, session_id: session.id
+      can [ :read ], Participation
+      can [ :create, :destroy ], Participation, session_id: session.id
       can [ :update ], Participation, tournament: { creator_id: session.id }
+
+      can [ :read ], ArmyList
+      can [ :create, :update ], ArmyList, participation: { session_id: session.id }
+
+      can [ :create ], Comment
     end
 
     # Define abilities for the passed in user here. For example:

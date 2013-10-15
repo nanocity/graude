@@ -1,3 +1,5 @@
+<h3>Create Tournament</h3>
+
 {{#if errors}}
   <div class='alert'>
     <button type="button" class="close" data-dismiss="alert">&times;</button>
@@ -13,21 +15,22 @@
  {{/if}}
 
 <form class='tournament' {{action save on='submit'}}>
-  <div class='span3 poster-container'>
-  </div>
+  {{view Graude.FileUploadView}}
 
-  <fieldset class='span5'>
-    {{input type='text' value=name placeholder='Tournament name'}}
+  <fieldset class='span4'>
+    {{input type='text' value=name placeholder='Tournament name' class='span4'}}
     {{view Graude.DatePickerView}}
-    {{input type='number' value=players_limit placeholder='Max. players'}}
+    {{input type='number' value=players_limit placeholder='Max. players' class='span4'}}
 
-    {{textarea value=description placeholder='Description'}}
+    {{textarea rows='8' value=description placeholder='Description' class='span4'}}
   </fieldset>
 
   <div class='span4 geolocation'>
     {{view Graude.GeolocationView}}
   </div>
 
-  <a href='#' {{action cancel}} class='btn'>Cancel</a>
-  {{input type='submit' value='Create' class='btn btn-primary'}}
+  <div class='span11'>
+    <a href='#' {{action cancel}} class='btn'>Cancel</a>
+    {{input type='submit' value='Create' class='btn btn-primary'}}
+  </div>
 </form>

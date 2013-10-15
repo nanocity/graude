@@ -1,0 +1,26 @@
+{{#if length}}
+  <h3>Participations</h3>
+  <div class='span5'>
+    <table class='table table-condensed table-striped table-hover'>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Player</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each}}
+          {{#link-to 'participation' this tagName='tr'}}
+            <td>{{indexHelper}}</td>
+            <td>{{session.name}}</td>
+            <td><span class='label label-warning'>{{status}}</status></td>
+          {{/link-to}}
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+  <div class='span6 army-list'>
+    {{outlet}}
+  </div>
+{{/if}}

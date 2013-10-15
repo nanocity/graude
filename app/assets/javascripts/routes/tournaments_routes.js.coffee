@@ -9,7 +9,7 @@ Graude.TournamentsNewRoute = Graude.AuthenticatedRoute.extend
   actions:
     save: () ->
       self = @
-      @modelFor( 'tournamentsNew' ).save().then(
+      @currentModel.save().then(
         ( model ) ->
           self.transitionTo( 'tournament', model )
         ( reason ) ->
@@ -17,5 +17,34 @@ Graude.TournamentsNewRoute = Graude.AuthenticatedRoute.extend
       )
 
     cancel: () ->
-      @modelFor( 'tournamentsNew' ).deleteRecord()
+      @currentModel.deleteRecord()
       @transitionTo( 'index' )
+
+  deactivate: ->
+    unless @currentModel.get( 'isSaving' )
+      @currentModel.rollback()
+
+
+Graude.TournamentRoute = Ember.Route.extend
+  actions:
+    subscribe: () ->
+      session = @controllerFor( 'tournament' ).currentSession
+      if session.get( 'isLoggedIn' )
+        participation = @store.createRecord( 'participation' )
+        participation.set( 'session', session.get( 'session' ) )
+        participation.set( 'tournament', @currentModel )
+        participation.save()
+
+    unsubscribe: () ->
+      session = @controllerFor( 'tournament' ).currentSession
+      participation = @controllerFor( 'tournament' ).get( 'currentParticipation' )
+      if session.get( 'isLoggedIn' ) and participation
+        participation.deleteRecord()
+        participation.save()
+
+
+    update_list: () ->
+      session = @controllerFor( 'tournament' ).currentSession
+      participation = @controllerFor( 'tournament' ).get( 'currentParticipation' )
+      if session.get( 'isLoggedIn' ) and participation
+        participation.get( 'army_list' ).save()

@@ -1,11 +1,21 @@
 class ParticipationSerializer < ActiveModel::Serializer
-  attributes :id, :status, :session, :tournament
+  attributes :id, :status
 
-  def session
-    object.session_id.to_param
-  end
+  has_one :session,
+    embed: :ids,
+    include: true,
+    key: :session,
+    embed_key: :id_param
 
-  def tournament
-    object.tournament_id.to_param
-  end
+  has_one :tournament,
+    embed: :ids,
+    include: true,
+    key: :tournament,
+    embed_key: :id_param
+
+  has_one :army_list,
+    embed: :ids,
+    include: true,
+    key: :army_list,
+    embed_key: :id_param
 end

@@ -1,6 +1,6 @@
 Graude.DatePickerView = Ember.View.extend
   templateName: 'views/date_picker'
-  classNames: ['input-append date']
+  classNames: ['input-append date span4']
 
   attributeBindings: [ 'data_date:data-date', 'data_date_format:data-date-format' ]
   data_date: ''

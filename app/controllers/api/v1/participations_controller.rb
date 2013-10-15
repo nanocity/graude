@@ -1,20 +1,24 @@
 class Api::V1::ParticipationsController < Api::V1::ApplicationController
-  load_and_authorize_resource :tournament
-  load_and_authorize_resource :participation, through: :tournament
+  before_filter :load_tournament, only: [:create]
+  authorize_resource :tournament, only: [:create]
+
+  load_resource :participation, except: [:create]
+  authorize_resource :participation
 
   def index
     respond_with @participations
   end
 
   def show
-    respond_with @participation
+    respond_with [@participation]
   end
 
   def create
+    @participation = Participation.new
     @participation.create_army_list
     @participation.update_attributes( tournament: @tournament, session: current_session )
 
-    respond_with @participation, location: api_v1_tournament_participation_url( @tournament, @participation )
+    respond_with @participation, location: api_v1_participation_url( @participation )
   end
 
   def update
@@ -24,10 +28,14 @@ class Api::V1::ParticipationsController < Api::V1::ApplicationController
 
   def destroy
     @participation.destroy
-    respond_with @participation
+    render json: @participation
   end
 
   private
+    def load_tournament
+      @tournament = Tournament.find( params[:participation].try( :[], :tournament ) || BSON::ObjectId.new )
+    end
+
     def participation_params
       params.require( :participation ).permit( :status )
     end

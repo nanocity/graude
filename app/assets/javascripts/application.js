@@ -19,6 +19,7 @@
 //= require bootstrap-datepicker
 //= require openlayers-rails
 //= require moment.min
+//= require jquery-fileupload
 //= require_self
 //= require graude
 //= require initializers

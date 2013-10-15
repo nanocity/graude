@@ -6,9 +6,12 @@ Graude::Application.routes.draw do
       resources :sessions, only: [ :index, :destroy ]
       resources :players,  only: [ :index, :show ]
 
-      resources :tournaments, except: [ :new, :edit ] do
-        resources :participations, except: [ :new, :edit ]
-      end
+      resources :tournaments,    except: [ :new, :edit ]
+      resources :participations, except: [ :new, :edit ]
+
+      resources :army_lists, except: [ :new, :edit ]
+
+      resources :comments, only: [ :create ]
     end
   end
 

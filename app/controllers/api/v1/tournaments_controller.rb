@@ -7,7 +7,7 @@ class Api::V1::TournamentsController < Api::V1::ApplicationController
   end
 
   def show
-    respond_with @tournament
+    respond_with [@tournament]
   end
 
   def create

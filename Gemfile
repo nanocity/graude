@@ -22,6 +22,7 @@ gem 'ember-source', '1.0.0'
 gem 'sass-rails', '~> 4.0.0'
 gem 'bootstrap-sass', '~> 2.3.2.1'
 gem 'font-awesome-sass-rails', '~> 3.0.2.2'
+gem 'jquery-fileupload-rails', '~> 0.4.1'
 
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'

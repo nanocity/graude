@@ -1,18 +1,18 @@
 <div class='box'>
   <div class='box-header'>
-    <h3 class='box-title'>Participating tournaments ({{tournaments_count}})</h3>
+    <h3 class='box-title'>Participating tournaments ({{length}})</h3>
   </div>
 
   <div class='box-body'>
     <ul class='tournament-list'>
       {{#each}}
-        {{#link-to 'tournament' this tagName='li' class='tournament-list-item'}}
+        {{#link-to 'participations' this tagName='li' class='tournament-list-item'}}
           <span><i class='icon-trophy'></i></span>
           <a href='#'>
             <span>{{name}}</span>
           </a>
 
-          <span {{bind-attr class=':label statusLabelClass'}}>{{status}}</span>
+          <span {{bind-attr class=':label currentStatusLabelClass'}}>{{currentParticipationStatus}}</span>
         {{/link-to}}
       {{else}}
         <li>
