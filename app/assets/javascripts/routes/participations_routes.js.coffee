@@ -4,7 +4,7 @@ Graude.ParticipationsRoute = Ember.Route.extend
 
 Graude.ParticipationRoute = Ember.Route.extend
   actions:
-    commnetNew: () ->
+    commentNew: () ->
       controller = @controllerFor( 'comment.new' )
       if controller.currentSession.get( 'isLoggedIn' )
         comment = @store.createRecord( 'comment' )
