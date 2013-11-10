@@ -3,7 +3,6 @@ class ArmyListSerializer < ActiveModel::Serializer
 
   has_one :participation,
     embed: :ids,
-    include: true,
     key: :participation,
     embed_key: :id_param
 

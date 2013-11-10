@@ -5,7 +5,7 @@ Graude.Tournament = DS.Model.extend
   date:          DS.attr( 'date' )
   players_limit: DS.attr( 'number' )
 
-  participations: DS.hasMany( 'participation' )
+  participations: DS.hasMany( 'participation', async: true )
 
-  creator: DS.belongsTo( 'session', inverse: 'created_tournaments' )
-  participators: DS.hasMany( 'session', inverse: 'participating_tournaments' )
+  creator: DS.belongsTo( 'session', inverse: 'created_tournaments', async: true )
+  participators: DS.hasMany( 'session', inverse: 'participating_tournaments', async: true )
